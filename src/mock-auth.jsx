@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation , Navigate} from "react-router-dom";
 
 import { users, mockAuth } from "./mock-data";
 
@@ -15,13 +15,15 @@ const initialState = {
 const AuthContext = createContext({
   authState: initialState,
   setAuthState: () => initialState,
-  isAuthenticated: () => false
+  isAuthenticated: () => false,
+  urlPath: '',
 });
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [authState, setAuthState] = useState({});
+  const [path, setPath] = useState("");
   
     const login = (username)=>{
       const data = mockAuth.login(username);
@@ -31,7 +33,12 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setAuthState({});
     console.log("logout")
-    navigate("/login");
+  //  navigate("/login", replace, {state={{path: location.pathname }});
+  console.log("location.pathname", location.pathname
+  )
+    setPath(location.pathname  )
+    navigate("/login",  {state: { path: location.pathname } });
+    
   };
 
   const isAuthenticated = () =>
@@ -45,6 +52,7 @@ const AuthProvider = ({ children }) => {
         isAuthenticated,
         login,
         logout,
+        urlPath: path,
       }}
     >
       {children}
