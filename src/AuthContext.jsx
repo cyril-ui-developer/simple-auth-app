@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
-import { useNavigate, useLocation , Navigate} from "react-router-dom";
+import { useNavigate, useLocation  } from "react-router-dom";
 
-import { users, mockAuth } from "./mock-data";
+import { users, mockAuth } from "./mock-data-server";
 
 const initialState = {
   user: {
@@ -32,10 +32,6 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setAuthState({});
-    console.log("logout")
-  //  navigate("/login", replace, {state={{path: location.pathname }});
-  console.log("location.pathname", location.pathname
-  )
     setPath(location.pathname  )
     navigate("/login",  {state: { path: location.pathname } });
     

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router";
 
 import { useState, useContext } from "react";
-import { AuthContext } from "../mock-auth";
+import { AuthContext } from "../AuthContext";
 
 const Login = () => {
   const authContext = useContext(AuthContext);

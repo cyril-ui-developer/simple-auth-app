@@ -1,17 +1,15 @@
 import { useLocation, Navigate } from "react-router";
 import { Routes, Route } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext } from "react";
 
-
-import { AuthContext } from './mock-auth'
-import Login from './pages/Login'
+import { AuthContext } from "./AuthContext";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import UserDetails from "./pages/UserDetails";
 
 function ProtectedRoute(props) {
   const { children } = props;
-   const { isAuthenticated} =  useContext(AuthContext);
-   console.log("isauth", isAuthenticated())
+  const { isAuthenticated } = useContext(AuthContext);
   const location = useLocation();
 
   return !isAuthenticated() ? (
@@ -32,7 +30,7 @@ function RoutesSetup() {
           </ProtectedRoute>
         }
       />
-     <Route
+      <Route
         path="/userdetails/:id"
         element={
           <ProtectedRoute>
@@ -41,7 +39,7 @@ function RoutesSetup() {
         }
       />
 
-     {/* <Route path="*" element={ <ProtectedRoute>
+      {/* <Route path="*" element={ <ProtectedRoute>
       <NotFoundPage /></ProtectedRoute>} /> */}
       <Route path="/login" element={<Login />} />
     </Routes>
