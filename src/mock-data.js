@@ -8,8 +8,8 @@ export const users = [
     },
     {
         id: '2',
-        email: 'naomi.grace@test.com',
-        firstName: 'Naomi',
+        email: 'rebecca.grace@test.com',
+        firstName: 'Rebecca',
         lastName: 'Grace',
         status: 'In-active',
       },
@@ -22,3 +22,12 @@ export const users = [
         },
 ]
   
+
+export const mockAuth = {
+  login(email) {
+    console.log("auth email", email);
+    const user = users.find((u) => u.email === email);
+
+    return user;
+  },
+};

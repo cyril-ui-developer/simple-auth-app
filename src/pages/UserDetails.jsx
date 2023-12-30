@@ -6,10 +6,10 @@ import {
 
     const NotFoundUser = ({id})=> <h3>{`The userID "${id}"" is invalid. Click Home to view vaild UserID.`}  </h3>
 const  UserDetails = ()=> {
-  const { authState, usersData} = useContext(AuthContext);
+  const { users} = useContext(AuthContext);
 
   const { id } = useParams();
- const user = usersData.find(user => user.id ===id)
+ const user = users.find(user => user.id ===id)
   if(!user){
     return <NotFoundUser  id= {id} />
     }

@@ -1,6 +1,7 @@
-import { users } from "./mock-data";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { users, mockAuth } from "./mock-data";
 
 const initialState = {
   user: {
@@ -14,36 +15,18 @@ const initialState = {
 const AuthContext = createContext({
   authState: initialState,
   setAuthState: () => initialState,
-  isAuthenticated: () => false,
-  logout: () => undefined,
+  isAuthenticated: () => false
 });
-export const mockAuth = {
-  login(email) {
-    console.log("auth email", email);
-    const user = users.find((u) => u.email === email);
-
-    return user;
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  },
-};
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const [authState, setAuthState] = useState({});
-
-  const setAuthData = (user) => {
-    console.log("user set auth ", user);
-    setAuthState({
-      user,
-    });
-  };
-
-  const isAuthenticated = () =>
-    Object.keys(authState)?.length > 0 ? true : false;
+  
+    const login = (username)=>{
+      const data = mockAuth.login(username);
+      setAuthState(data);
+    }
 
   const logout = () => {
     setAuthState({});
@@ -51,13 +34,16 @@ const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
+  const isAuthenticated = () =>
+  Object.keys(authState)?.length > 0 ? true : false;
+
   return (
     <AuthContext.Provider
       value={{
-        usersData: users,
+        users,
         authState,
-        setAuthState: (authData) => setAuthData(authData),
         isAuthenticated,
+        login,
         logout,
       }}
     >

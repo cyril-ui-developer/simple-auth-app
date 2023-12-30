@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../mock-auth";
 
 const Dashboard = () => {
-  const { authState, usersData } = useContext(AuthContext);
-  console.log("autth state ", authState, usersData);
+  const { users } = useContext(AuthContext);
   return (
     <div>
       <h4>Dashboard page</h4>
@@ -19,7 +18,7 @@ const Dashboard = () => {
         </tr>
         </thead> 
         <tbody>
-        {usersData.map((user) => (
+        {users.map((user) => (
           <tr key={user.id}>
             <td>{user.id} </td>
             <td>{user.firstName} </td>
