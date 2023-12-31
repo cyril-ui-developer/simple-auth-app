@@ -7,8 +7,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import UserDetails from "./pages/UserDetails";
 
-function ProtectedRoute(props) {
-  const { children } = props;
+function ProtectRoute({children}) {;
   const { isAuthenticated } = useContext(AuthContext);
   const location = useLocation();
 
@@ -25,22 +24,19 @@ function RoutesSetup() {
       <Route
         path="/"
         element={
-          <ProtectedRoute>
+          <ProtectRoute>
             <Dashboard />
-          </ProtectedRoute>
+          </ProtectRoute>
         }
       />
       <Route
         path="/userdetails/:id"
         element={
-          <ProtectedRoute>
+          <ProtectRoute>
             <UserDetails />
-          </ProtectedRoute>
+          </ProtectRoute>
         }
       />
-
-      {/* <Route path="*" element={ <ProtectedRoute>
-      <NotFoundPage /></ProtectedRoute>} /> */}
       <Route path="/login" element={<Login />} />
     </Routes>
   );
