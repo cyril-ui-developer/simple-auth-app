@@ -52,4 +52,4 @@ export const mockAuth = {
 //   );
 // }
 
-export { getUser, getUsers};
+//export { getUser, getUsers};
