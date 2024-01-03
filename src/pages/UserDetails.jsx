@@ -2,16 +2,14 @@ import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../AuthContext";
 
-const NotFoundUser = ({ id }) => (
-  <h3>{`The userID "${id}"" is invalid. Click Home to view vaild UserID.`} </h3>
-);
+
 const UserDetails = () => {
   const { users } = useContext(AuthContext);
   const { id } = useParams();
   const user = users.find((user) => user.id === id);
 
   if (!user) {
-    return <NotFoundUser id={id} />;
+    return   <h3>{`The userID "${id}"" is invalid. Click Home to view vaild UserID.`} </h3>;
   }
 
   return (

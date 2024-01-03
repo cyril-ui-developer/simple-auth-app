@@ -32,24 +32,24 @@ export const mockAuth = {
   },
 };
 
-function getUser(username) {
-  return new Promise((resolve, reject) =>
-    setTimeout(() => {
-      const user = users.find((u) => u.email === username);
-      console.log("user test", user)
-      if (user) return resolve(user);
-      return reject("Error: The user do not exist");
-    }, 1)
-  );
-}
+// function getUser(username) {
+//   return new Promise((resolve, reject) =>
+//     setTimeout(() => {
+//       const user = users.find((u) => u.email === username);
+//       console.log("user test", user)
+//       if (user) return resolve(user);
+//       return reject("Error: The user do not exist");
+//     }, 1)
+//   );
+// }
 
-function getUsers() {
-  return new Promise((resolve, reject) =>
-    setTimeout(() => {
-      if (users.length > 0) return resolve(users);
-      return reject("Error: Failed to fetch users");
-    }, 1000)
-  );
-}
+// function getUsers() {
+//   return new Promise((resolve, reject) =>
+//     setTimeout(() => {
+//       if (users.length > 0) return resolve(users);
+//       return reject("Error: Failed to fetch users");
+//     }, 1000)
+//   );
+// }
 
 export { getUser, getUsers};

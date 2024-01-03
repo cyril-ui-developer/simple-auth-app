@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 
 const Nav = ({username, logout}) => {
-
   return (
     <header>
       <h2>
