@@ -1,8 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import RoutesSetup from "./routes";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import UserDetails from "./pages/UserDetails";
+import Protected from "./components/Protected";
 import Nav from "./components/Nav";
 
 function App() {
@@ -13,7 +17,25 @@ function App() {
       {isUserAuthenticated() && (
         <Nav username={authState?.firstName} logout={logout} />
       )}
-      <RoutesSetup />
+  <Routes>
+      <Route
+        path="/"
+        element={
+          <Protected>
+            <Dashboard />
+          </Protected>
+        }
+      />
+      <Route
+        path="/userdetails/:id"
+        element={
+          <Protected>
+            <UserDetails />
+          </Protected>
+        }
+      />
+      <Route path="/login" element={<Login />} />
+    </Routes>
     </div>
   );
 }

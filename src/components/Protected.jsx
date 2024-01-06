@@ -3,15 +3,15 @@ import { useContext } from "react";
 
 import { AuthContext } from "../AuthContext";
 
-const ProtectRoute = ({ children }) => {
+function Protected({ children }) {
   const { isUserAuthenticated } = useContext(AuthContext);
   const location = useLocation();
 
-  return isUserAuthenticated() ? (
+  return !isUserAuthenticated() ? (
     <Navigate to="/login" replace state={{ path: location.pathname }} />
   ) : (
     children
   );
-};
+}
 
-export default ProtectRoute;
+export default Protected;
