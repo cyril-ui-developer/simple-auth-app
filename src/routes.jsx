@@ -7,11 +7,11 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import UserDetails from "./pages/UserDetails";
 
-function ProtectRoute({children}) {;
-  const { isAuthenticated } = useContext(AuthContext);
+function ProtectRoute({ children }) {
+  const { isUserAuthenticated } = useContext(AuthContext);
   const location = useLocation();
 
-  return !isAuthenticated() ? (
+  return !isUserAuthenticated() ? (
     <Navigate to="/login" replace state={{ path: location.pathname }} />
   ) : (
     children

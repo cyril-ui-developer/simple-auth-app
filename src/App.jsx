@@ -6,11 +6,11 @@ import RoutesSetup from "./routes";
 import Nav from "./components/Nav";
 
 function App() {
-  const { authState, isAuthenticated, logout } = useContext(AuthContext);
+  const { authState, isUserAuthenticated, logout } = useContext(AuthContext);
 
   return (
     <div className="app">
-      {isAuthenticated() && (
+      {isUserAuthenticated() && (
         <Nav username={authState?.firstName} logout={logout} />
       )}
       <RoutesSetup />
