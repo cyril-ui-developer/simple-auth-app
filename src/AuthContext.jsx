@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createContext } from "react";
 
-import { users, mockAuth } from "./mock-auth-server";
+import { mockAuth } from "./mock-auth-server";
 
 const initialState = {
   user: {
@@ -44,7 +44,6 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        users,
         authState,
         isUserAuthenticated,
         login,

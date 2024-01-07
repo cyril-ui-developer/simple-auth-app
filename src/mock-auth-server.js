@@ -24,10 +24,16 @@ export const users = [
   
 
 export const mockAuth = {
+  getUsers() {
+    return users;
+  },
   login(email) {
-    console.log("auth email", email);
     const user = users.find((u) => u.email === email);
 
+    return user;
+  },
+  getUser(id) {
+    const user = users.find((user) => user.id === id);
     return user;
   },
 };

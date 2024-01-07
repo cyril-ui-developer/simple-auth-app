@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
+import { AuthContext } from "./AuthContext";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import UserDetails from "./pages/UserDetails";

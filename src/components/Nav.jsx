@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
+import { AuthContext } from "../AuthContext";
 
-const Nav = ({username, logout}) => {
+const Nav = () => {
+  const { authState, logout } = useContext(AuthContext);
+
   return (
     <header>
       <h2>
@@ -10,7 +14,7 @@ const Nav = ({username, logout}) => {
           </Link>
         </h2>
 
-        <p>Hi {username}, You are logged in.</p>
+        <p>Hi {authState.firstName}, You are logged in.</p>
           <nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}

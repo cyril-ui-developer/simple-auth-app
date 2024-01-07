@@ -1,9 +1,9 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../AuthContext";
+import { mockAuth } from "../mock-auth-server";
 
 const Dashboard = () => {
-  const { users } = useContext(AuthContext);
+  const  users  = mockAuth.getUsers();
+
   return (
     <div>
       <h4>Dashboard page</h4>

@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../AuthContext";
+import { mockAuth } from "../mock-auth-server";
 
 
 const UserDetails = () => {
-  const { users } = useContext(AuthContext);
   const { id } = useParams();
-  const user = users.find((user) => user.id === id);
+  const  user  = mockAuth.getUser(id);
 
   if (!user) {
     return   <h3>{`The userID "${id}"" is invalid. Click Home to view vaild UserID.`} </h3>;
