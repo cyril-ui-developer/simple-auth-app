@@ -1,4 +1,4 @@
-export const users = [
+const users = [
     {
       id: '1',
       email: 'john.thomas@test.com',
@@ -24,13 +24,13 @@ export const users = [
   
 
 export const mockAuth = {
-  getUsers() {
-    return users;
-  },
   login(email) {
     const user = users.find((u) => u.email === email);
 
     return user;
+  },
+  getUsers() {
+    return users;
   },
   getUser(id) {
     const user = users.find((user) => user.id === id);

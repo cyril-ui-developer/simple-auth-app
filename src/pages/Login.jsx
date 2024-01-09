@@ -19,7 +19,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     authContext.login(username);
-    navigate(authContext.urlPath || state?.path || "/");
+    navigate(state?.path || "/");
   };
 
   const onLoginChange = (value) => {

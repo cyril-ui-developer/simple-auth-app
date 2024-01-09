@@ -4,7 +4,7 @@ import { createContext } from "react";
 
 import { mockAuth } from "./mock-auth-server";
 
-const initialState = {
+const initialUserState = {
   user: {
     email: "",
     firstName: "",
@@ -14,30 +14,27 @@ const initialState = {
 };
 
 const AuthContext = createContext({
-  authState: initialState,
-  setAuthState: () => initialState,
+  authState: initialUserState,
+  setAuthState: () => initialUserState,
   isUserAuthenticated: () => false,
 });
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [authState, setAuthState] = useState({});
-  const [path, setPath] = useState("");
   const [isError, setIsError] = useState(false);
 
   const isUserAuthenticated = () =>
     authState && Object.keys(authState)?.length > 0 ? true : false;
 
   const login = (username) => {
-    const data = mockAuth.login(username);
-    setAuthState(data);
+    const user = mockAuth.login(username);
+    setAuthState(user);
     setIsError(!isUserAuthenticated());
   };
 
   const logout = () => {
     setAuthState({});
-    setPath(location.pathname);
-    navigate("/login", { state: { path: location.pathname } });
     setIsError(false);
   };
 
@@ -48,7 +45,6 @@ const AuthProvider = ({ children }) => {
         isUserAuthenticated,
         login,
         logout,
-        urlPath: path,
         isError,
       }}
     >

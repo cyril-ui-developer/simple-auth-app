@@ -7,10 +7,10 @@ function Protected({ children }) {
   const { isUserAuthenticated } = useContext(AuthContext);
   const location = useLocation();
 
-  return !isUserAuthenticated() ? (
-    <Navigate to="/login" replace state={{ path: location.pathname }} />
+  return isUserAuthenticated() ? (
+    children  
   ) : (
-    children
+    <Navigate to="/login" replace state={{ path: location.pathname }} />
   );
 }
 

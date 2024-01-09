@@ -10,12 +10,12 @@ import Protected from "./components/Protected";
 import Nav from "./components/Nav";
 
 function App() {
-  const { authState, isUserAuthenticated, logout } = useContext(AuthContext);
+  const { isUserAuthenticated } = useContext(AuthContext);
 
   return (
     <div className="app">
       {isUserAuthenticated() && (
-        <Nav username={authState?.firstName} logout={logout} />
+        <Nav />
       )}
   <Routes>
       <Route
@@ -35,6 +35,9 @@ function App() {
         }
       />
       <Route path="/login" element={<Login />} />
+      <Route path="*" element={<Login />} /> 
+      {/* Redirects to Login page if the user tries to enter invalid routes NOT `userID`
+      in the UserDetails page */}
     </Routes>
     </div>
   );
